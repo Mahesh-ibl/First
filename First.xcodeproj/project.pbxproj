@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		999AA63925EF893E0035F9E3 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AA63825EF893E0035F9E3 /* DBHelper.swift */; };
+		999AA63C25EF9A260035F9E3 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AA63B25EF9A260035F9E3 /* Hero.swift */; };
+		999AA63F25EFAE070035F9E3 /* HeroRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AA63E25EFAE070035F9E3 /* HeroRow.swift */; };
+		999AA64125EFB52D0035F9E3 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999AA64025EFB52D0035F9E3 /* ActionProtocol.swift */; };
 		99FE91ED25EF5CE0000087E7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FE91EC25EF5CE0000087E7 /* AppDelegate.swift */; };
 		99FE91EF25EF5CE0000087E7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FE91EE25EF5CE0000087E7 /* SceneDelegate.swift */; };
 		99FE91F125EF5CE0000087E7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99FE91F025EF5CE0000087E7 /* ViewController.swift */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		999AA63825EF893E0035F9E3 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		999AA63B25EF9A260035F9E3 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		999AA63E25EFAE070035F9E3 /* HeroRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroRow.swift; sourceTree = "<group>"; };
+		999AA64025EFB52D0035F9E3 /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 		99FE91E925EF5CE0000087E7 /* First.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = First.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99FE91EC25EF5CE0000087E7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		99FE91EE25EF5CE0000087E7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -76,6 +84,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		999AA63A25EF9A170035F9E3 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				999AA63B25EF9A260035F9E3 /* Hero.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		999AA63D25EFAD190035F9E3 /* CustomCell */ = {
+			isa = PBXGroup;
+			children = (
+				999AA63E25EFAE070035F9E3 /* HeroRow.swift */,
+			);
+			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		999AA64225EFB5920035F9E3 /* Utilites */ = {
+			isa = PBXGroup;
+			children = (
+				999AA64025EFB52D0035F9E3 /* ActionProtocol.swift */,
+				999AA63825EF893E0035F9E3 /* DBHelper.swift */,
+			);
+			path = Utilites;
+			sourceTree = "<group>";
+		};
 		99FE91E025EF5CE0000087E7 = {
 			isa = PBXGroup;
 			children = (
@@ -99,6 +132,9 @@
 		99FE91EB25EF5CE0000087E7 /* First */ = {
 			isa = PBXGroup;
 			children = (
+				999AA64225EFB5920035F9E3 /* Utilites */,
+				999AA63D25EFAD190035F9E3 /* CustomCell */,
+				999AA63A25EF9A170035F9E3 /* Modal */,
 				99FE91EC25EF5CE0000087E7 /* AppDelegate.swift */,
 				99FE91EE25EF5CE0000087E7 /* SceneDelegate.swift */,
 				99FE91F025EF5CE0000087E7 /* ViewController.swift */,
@@ -259,9 +295,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				999AA63C25EF9A260035F9E3 /* Hero.swift in Sources */,
 				99FE91F125EF5CE0000087E7 /* ViewController.swift in Sources */,
+				999AA64125EFB52D0035F9E3 /* ActionProtocol.swift in Sources */,
+				999AA63F25EFAE070035F9E3 /* HeroRow.swift in Sources */,
 				99FE91ED25EF5CE0000087E7 /* AppDelegate.swift in Sources */,
 				99FE91EF25EF5CE0000087E7 /* SceneDelegate.swift in Sources */,
+				999AA63925EF893E0035F9E3 /* DBHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
