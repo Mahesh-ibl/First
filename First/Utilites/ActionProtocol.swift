@@ -10,4 +10,5 @@ import Foundation
 
 protocol DeleteHeroDelegate {
     func onTapDeleteHero(cell:HeroRow)
+    func onTapUpdate(cell:HeroRow)
 }

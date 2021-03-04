@@ -22,20 +22,19 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onTapSave(_ sender: Any) {
-        DBHelper.shared.insertData(name: textFieldName.text ?? "", powerRank: textFieldRank.text ?? "") { (bSuccess) in
-            if bSuccess {
-                textFieldRank.text = ""
-                textFieldName.text = ""
-                fetchHeros()
-                tableViewHero.reloadData()
-            } else {
-                print("Error while data inserting")
+        
+        if !textFieldName.text!.isEmpty && !textFieldRank.text!.isEmpty  {
+            DBHelper.shared.insertData(name: textFieldName.text ?? "", powerRank: textFieldRank.text ?? "") { (bSuccess) in
+                if bSuccess {
+                    textFieldRank.text = ""
+                    textFieldName.text = ""
+                    fetchHeros()
+                    tableViewHero.reloadData()
+                } else {
+                    print("Error while data inserting")
+                }
             }
         }
-    }
-    
-    @IBAction func onTapGet(_ sender: Any) {
-       
     }
     
     func fetchHeros(){
@@ -55,26 +54,43 @@ extension ViewController : UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HeroRow", for: indexPath) as! HeroRow
+        let hero = heros[indexPath.row]
         cell.selectionStyle = .none
         cell.deleteHeroDelgate = self
-        let hero = heros[indexPath.row]
+        cell.textFieldName.text = hero.name
         cell.lblId.text = "\(hero.id)"
-        cell.lblName.text = hero.name
+        cell.textFieldRank.text = "\(hero.powerRanking)"
         return cell
     }
 }
 
 extension ViewController : DeleteHeroDelegate {
+  
+    func onTapUpdate(cell: HeroRow) {
+        let cell  = cell
+        let indexOfItem = heros.firstIndex(where: {$0.id == Int(cell.lblId.text ?? "0") ?? 0})
+        DBHelper.shared.updateHero(id: heros[indexOfItem ?? 0].id, name: cell.textFieldName.text ?? "", powerRank: Int(cell.textFieldRank.text ?? "") ?? 0) { (bSuccess) in
+            if bSuccess {
+                cell.textFieldName.endEditing(true)
+                cell.textFieldRank.endEditing(true)
+                cell.btnUpdate.isEnabled = false
+                heros[indexOfItem ?? 0].name = cell.textFieldName.text ?? ""
+                tableViewHero.reloadData()
+            }
+        }
+    }
     
     func onTapDeleteHero(cell:HeroRow) {
         let cell  = cell
-        DBHelper.shared.deleteHero(id: Int(cell.lblId.text ?? "") ?? 0) { (bSuccess) in
+        let indexOfItem = heros.firstIndex(where: {$0.name == cell.textFieldName.text})
+        DBHelper.shared.deleteHero(id: heros[indexOfItem ?? 0 ].id) { (bSuccess) in
             if bSuccess {
-                let indexOfItem = heros.firstIndex(where: {$0.name == cell.lblName.text})
                 heros.remove(at: indexOfItem ?? 0)
                 tableViewHero.reloadData()
             }
         }
     }
+    
+    
 }
 

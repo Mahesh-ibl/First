@@ -17,6 +17,7 @@ class DBHelper {
     let insertDataQuery = "INSERT INTO Heroes (name, powerrank) VALUES (?,?)"
     let allHero = "SELECT * FROM Heroes"
     let deleteHero = "DELETE FROM Heroes WHERE ID = %@"
+    let updateHero = "UPDATE Heroes SET NAME = %@,POWERRANK = %@ WHERE ID = %@"
     
     func createDatabase() {
        let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
@@ -90,6 +91,19 @@ class DBHelper {
                completion(true)
             } else {
                completion(false)
+            }
+        }
+    }
+    
+    func updateHero(id:Int,name:String,powerRank:Int,completion:(Bool) -> Void ) {
+        var stmt:OpaquePointer?
+       // let updateQuery = String(format: updateHero, name,powerRank,id)
+        let updateQuery = "UPDATE Heroes SET name = '\(name)',powerrank = '\(powerRank)' WHERE id = \(id);"
+        if sqlite3_prepare(db, updateQuery, -1, &stmt, nil) == SQLITE_OK {
+            if sqlite3_step(stmt) == SQLITE_DONE {
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }

@@ -10,11 +10,36 @@ import Foundation
 import UIKit
 
 class HeroRow: UITableViewCell {
+   
     @IBOutlet weak var lblId: UILabel!
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var textFieldRank: UITextField!
+    @IBOutlet weak var textFieldName: UITextField!
+    @IBOutlet weak var btnUpdate: UIButton!
+    
     var deleteHeroDelgate:DeleteHeroDelegate?
     
-    @IBAction func onTapDelete(_ sender: Any) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        btnUpdate.isEnabled = false
+        textFieldName.addTarget(self, action: #selector(onTextDidChange), for: .editingChanged)
+    }
+    
+    
+    
+    @IBAction func onTapDelete(_ sender: UIButton) {
         deleteHeroDelgate?.onTapDeleteHero(cell: self)
     }
+    
+    @IBAction func onTapUpdate(_ sender: UIButton) {
+        deleteHeroDelgate?.onTapUpdate(cell: self)
+    }
+    
+    @objc func onTextDidChange() {
+        if textFieldName.text != "" {
+            btnUpdate.isEnabled = true
+        } else {
+            btnUpdate.isEnabled = false
+        }
+    }
 }
+
